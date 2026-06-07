@@ -866,7 +866,10 @@
                                 <h3 class="card-title">Mantenimientos de Productos</h3>&nbsp;
                                 <div class="d-flex justify-content-end">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
-                                        Agregar
+                                        Agregar producto
+                                    </button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-categoria">
+                                        Agregar categoria
                                     </button>
                                 </div>
                             </div>
@@ -888,11 +891,12 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Stock</th>
+                                        <th>Categoria</th>
+                                        <th>Acciones</th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -946,6 +950,34 @@
                             </div>
                             <!-- /.modal-dialog -->
                         </div>
+
+                        <div class="modal fade" id="modal-categoria">
+                            <div class="modal-dialog modal-md"> <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Agregar categoría</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form-nueva-categoria">
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="nombre-categoria">Nombre de la Categoría:</label>
+                                                <input type="text" class="form-control" id="nombre-categoria" placeholder="Ej. Computo, Línea Blanca...">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-success" onclick="guardarCategoriaDirecta();">Guardar categoría</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+
                         <div class="modal fade" id="modal-update">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">

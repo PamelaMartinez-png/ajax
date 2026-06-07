@@ -36,7 +36,11 @@ function guardar() {
     let nombreProducto = document.getElementById('nombre').value;
     let precioProducto = document.getElementById("precio").value;
     let stockProducto = document.getElementById("stock").value;
-    let categoriaProducto = document.getElementById("categoria").value;
+    let categoriaSelect = document.getElementById("categoria").value;
+    let categoriaProducto = categoriaSelect.value;
+    //para que aparezca inmediatamente
+    let nombreCategoriaTexto = categoriaSelect.options[categoriaSelect.selectedIndex].text;
+
     //Solcitud de guardar un producto usando AJAX
     $.ajax({
         method:'POST',
@@ -58,7 +62,7 @@ function guardar() {
 
             let tabla = new DataTable("#example1");
             var rowNode = tabla.row
-                .add([producto.id,producto.nombre,producto.precio,producto.stock,botones])
+                .add([producto.id,producto.nombre,producto.precio,producto.stock,nombreCategoriaTexto,botones])
                 .draw()
                 .node().id='renglon_'+producto.id;
 
@@ -100,7 +104,9 @@ function actualizar() {
     let nombreProducto=document.getElementById('nombre-update').value;
     let precioProducto = document.getElementById('precio-update').value;
     let stockProducto =document.getElementById('stock-update').value;
-    let catetoriaProducto = document.getElementById('categoria-update').value
+    let categoriaSelect = document.getElementById('categoria-update').value;
+    let catetoriaProducto = categoriaSelect.value;
+    let nombreCategoriaTexto = categoriaSelect.options[categoriaSelect.selectedIndex].text;
     $.ajax({
         method:'PATCH',
         contentType:'application/json',
@@ -118,6 +124,7 @@ function actualizar() {
             datos[1]=nombreProducto;
             datos[2]=precioProducto;
             datos[3]=stockProducto;
+            datos[4] = nombreCategoriaTexto;
             tabla.row("#renglon_"+idPoducto).data(datos)
             tabla.draw();
             alert('Producto actualizado');
