@@ -58,7 +58,7 @@ function guardar() {
 
             let tabla = new DataTable("#example1");
             var rowNode = tabla.row
-                .add([producto.id,producto.nombre,producto.precio,producto.stock,botones])
+                .add([producto.id,producto.nombre,producto.precio,producto.stock,producto.categoria,botones])
                 .draw()
                 .node().id='renglon_'+producto.id;
 
