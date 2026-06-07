@@ -59,7 +59,7 @@ function guardar() {
             let nombreCategoria = selectCategoria.options[selectCategoria.selectedIndex].text;
             let tabla = new DataTable("#example1");
             var rowNode = tabla.row
-                .add([producto.id,producto.nombre,producto.precio,producto.stock,nombreCategoria,botones])
+                .add([producto.id,producto.nombre,'$ '+producto.precio,producto.stock,nombreCategoria,botones])
                 .draw()
                 .node().id='renglon_'+producto.id;
 
