@@ -951,32 +951,33 @@
                             <!-- /.modal-dialog -->
                         </div>
 
-                        <div class="modal fade" id="modal-categoria">
-                            <div class="modal-dialog modal-md"> <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Agregar categoría</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="form-nueva-categoria">
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <label for="nombre-categoria">Nombre de la Categoría:</label>
-                                                <input type="text" class="form-control" id="nombre-categoria" placeholder="Ej. Computo, Línea Blanca...">
+
+                        <div class="modal fade" id="modal-add-categoria">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Agregar Categoría</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="form-add-categoria">
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="nombre-categoria">Nombre:</label>
+                                                    <input type="text" class="form-control" id="nombre-categoria" placeholder="Ingrese nombre de la categoría">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-success" onclick="guardarCategoria();">Guardar categoría</button>
+                                    </div>
                                 </div>
-                                <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-success" onclick="guardarCategoria();">Guardar categoría</button>
-                                </div>
-                            </div>
                             </div>
                         </div>
-
 
                         <div class="modal fade" id="modal-update">
                             <div class="modal-dialog modal-lg">

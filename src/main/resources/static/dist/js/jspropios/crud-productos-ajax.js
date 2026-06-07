@@ -55,10 +55,11 @@ function guardar() {
             //Agregar el producto a la tabla
             let botones = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-update" onclick="identificaActualizar('+producto.id+')"> Editar </button>';
             botones = botones + ' <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" onclick="identificaEliminar('+producto.id+')">Eliminar</button>';
-
+            let selectCategoria = document.getElementById('categoria');
+            let nombreCategoria = selectCategoria.options[selectCategoria.selectedIndex].text;
             let tabla = new DataTable("#example1");
             var rowNode = tabla.row
-                .add([producto.id,producto.nombre,producto.precio,producto.stock,producto.categoria,botones])
+                .add([producto.id,producto.nombre,producto.precio,producto.stock,nombreCategoria,botones])
                 .draw()
                 .node().id='renglon_'+producto.id;
 
@@ -112,13 +113,15 @@ function actualizar() {
             categoria:catetoriaProducto
         }),
         success: function( producto ) {
+            let selectCategoria = document.getElementById('categoria-update');
+            let nombreCategoria = selectCategoria.options[selectCategoria.selectedIndex].text;
             //Editar el renglon de la tabla
             let tabla = new DataTable("#example1");
             var datos = tabla.row("#renglon_"+idPoducto).data()
             datos[1]=nombreProducto;
             datos[2]=precioProducto;
             datos[3]=stockProducto;
-            datos[4]=catetoriaProducto;
+            datos[4]=nombreCategoria;
             tabla.row("#renglon_"+idPoducto).data(datos)
             tabla.draw();
             alert('Producto actualizado');
