@@ -1,4 +1,3 @@
-// ====== CRUD DE CATEGORÍAS (VISTA INDEPENDIENTE) ======
 
 function listarCategorias() {
   $.ajax({
@@ -7,7 +6,7 @@ function listarCategorias() {
     data: {},
     success: function (categorias) {
       let tabla = new DataTable('#exampleCategorias');
-      tabla.clear().draw(); // Limpiamos datos previos si existen
+      tabla.clear().draw();
 
       categorias.forEach(categoria => {
         let botones = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-update-categoria" onclick="identificaActualizarCategoria(${categoria.id})"> Editar </button>`;
@@ -82,7 +81,7 @@ function actualizarCategoria() {
     success: function () {
       let tabla = new DataTable("#exampleCategorias");
       let datos = tabla.row("#renglon_cat_" + idCat).data();
-      datos[1] = nombreCat; // Actualizamos la columna del nombre
+      datos[1] = nombreCat;
 
       tabla.row("#renglon_cat_" + idCat).data(datos).draw();
       alert('Categoría actualizada correctamente');
