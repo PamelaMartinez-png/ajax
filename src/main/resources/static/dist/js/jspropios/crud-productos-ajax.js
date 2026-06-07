@@ -7,27 +7,27 @@ function listar() {
             let mapaCategorias = {};
             categorias.forEach(c => { mapaCategorias[c.id] = c.nombre; });
 
-    $.ajax({
-        method: "GET",
-        url: "/productos/api/productos",
-        data: {},
-        success: function (productos) {
-            let tabla = new DataTable('#example1');
-            productos.forEach(producto=>{
+            $.ajax({
+                method: "GET",
+                url: "/productos/api/productos",
+                data: {},
+                success: function (productos) {
+                    let tabla = new DataTable('#example1');
+                    productos.forEach(producto=>{
 
-                let botones = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-update" onclick="identificaActualizar('+producto.id+')"> Editar </button>';
-                botones = botones + ' <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" onclick="identificaEliminar('+producto.id+')">Eliminar</button>';
-                //si no se pone categoria
-                let nombreCategoria = mapaCategorias[producto.categoria] || "Sin Categoría";
+                        let botones = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-update" onclick="identificaActualizar('+producto.id+')"> Editar </button>';
+                        botones = botones + ' <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" onclick="identificaEliminar('+producto.id+')">Eliminar</button>';
+                        //si no se pone categoria
+                        let nombreCategoria = mapaCategorias[producto.categoria] || "Sin Categoría";
 
-                let rowNode = tabla.row
-                    .add([producto.id, producto.nombre, '$ '+producto.precio, producto.stock,nombreCategoria, botones])
-                    .draw()
-                    .node().id = 'renglon_' + producto.id;
-            })
+                        let rowNode = tabla.row
+                            .add([producto.id, producto.nombre, '$ '+producto.precio, producto.stock,nombreCategoria, botones])
+                            .draw()
+                            .node().id = 'renglon_' + producto.id;
+                    })
+                }
+            });
         }
-    });
-}
     });
 }
 
@@ -36,12 +36,7 @@ function guardar() {
     let nombreProducto = document.getElementById('nombre').value;
     let precioProducto = document.getElementById("precio").value;
     let stockProducto = document.getElementById("stock").value;
-
-    let categoriaSelect = document.getElementById("categoria").value;
-    let idCategoria = parseInt(categoriaSelect.value);
-    //para que aparezca inmediatamente
-    let textoCategoria = categoriaSelect.options[categoriaSelect.selectedIndex].text;
-
+    let categoriaProducto = document.getElementById("categoria").value;
     //Solcitud de guardar un producto usando AJAX
     $.ajax({
         method:'POST',
@@ -63,7 +58,7 @@ function guardar() {
 
             let tabla = new DataTable("#example1");
             var rowNode = tabla.row
-                .add([producto.id,producto.nombre,producto.precio,producto.stock,textoCategoria,botones])
+                .add([producto.id,producto.nombre,producto.precio,producto.stock,botones])
                 .draw()
                 .node().id='renglon_'+producto.id;
 
@@ -105,10 +100,7 @@ function actualizar() {
     let nombreProducto=document.getElementById('nombre-update').value;
     let precioProducto = document.getElementById('precio-update').value;
     let stockProducto =document.getElementById('stock-update').value;
-
-    let categoriaSelect = document.getElementById('categoria-update');
-    let idCategoria = parseInt(categoriaSelect.value);
-    let textoCategoria = categoriaSelect.options[categoriaSelect.selectedIndex].text;
+    let catetoriaProducto = document.getElementById('categoria-update').value
     $.ajax({
         method:'PATCH',
         contentType:'application/json',
@@ -126,7 +118,7 @@ function actualizar() {
             datos[1]=nombreProducto;
             datos[2]=precioProducto;
             datos[3]=stockProducto;
-            datos[4] = textoCategoria;
+            datos[4]=catetoriaProducto;
             tabla.row("#renglon_"+idPoducto).data(datos)
             tabla.draw();
             alert('Producto actualizado');
